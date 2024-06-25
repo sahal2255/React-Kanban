@@ -12,18 +12,19 @@ const taskSlice = createSlice({
         text: action.payload.text,
         status: 'Pending',
       });
-
-      // Log id and text to console
-      console.log('Added Task:', {
-        id: taskId - 1, // Since taskId is incremented after pushing
-        text: action.payload.text,
-      });
     },
     deleteTask: (state, action) => {
       return state.filter(task => task.id !== action.payload);
     },
+    updateTaskStatus: (state, action) => {
+      const { id, status } = action.payload;
+      const task = state.find(task => task.id === id);
+      if (task) {
+        task.status = status;
+      }
+    },
   },
 });
 
-export const { addTask, deleteTask } = taskSlice.actions;
+export const { addTask, deleteTask, updateTaskStatus } = taskSlice.actions;
 export default taskSlice.reducer;
