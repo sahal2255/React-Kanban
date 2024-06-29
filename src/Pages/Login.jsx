@@ -13,8 +13,8 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <div className="bg-yellow-500 flex justify-center m-10 p-10">
+    <div className="">
+      <div className="bg-gray-100 flex justify-center m-10 p-10">
         <form onSubmit={handleSubmit} className="">
           <div className="">
             <input
