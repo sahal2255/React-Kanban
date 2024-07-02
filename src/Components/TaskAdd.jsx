@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addTask } from '../Redux/Task/TaskSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const TaskAdd = () => {
   const [taskText, setTaskText] = useState(''); 
@@ -9,13 +11,12 @@ const TaskAdd = () => {
 
   const handleAddTask = () => {
     if (taskText.trim()) {
-      dispatch(addTask({ text: taskText })); 
-      console.log('Added Task:', { text: taskText }); 
+      dispatch(addTask({ text: taskText }));
+      toast.success('Task added successfully!');
       setTaskText(''); 
       setShowInput(false);
     }
   };
-
 
   const handleToggleInput = () => {
     setShowInput(!showInput);
@@ -23,6 +24,7 @@ const TaskAdd = () => {
 
   return (
     <div className="mb-4">
+      <ToastContainer />
       {showInput ? (
         <>
           <input

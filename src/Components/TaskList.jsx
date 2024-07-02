@@ -17,6 +17,7 @@ const TaskList = () => {
 
   const deleteItem = (taskId) => {
     dispatch(deleteTask(taskId));
+
   };
 
   const editItem = (task) => {
