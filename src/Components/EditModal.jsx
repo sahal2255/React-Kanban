@@ -13,7 +13,7 @@ const EditModal = ({ task, onClose }) => {
     }
 
     const handleUpdate = () => {
-      dispatch(editTask({ id: task.id, text: inputValue })); // Dispatch the editTask action with the updated text
+      dispatch(editTask({ id: task.id, text: inputValue }));
       onClose();
     };
 

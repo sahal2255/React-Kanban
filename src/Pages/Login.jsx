@@ -1,11 +1,21 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
+import Cookies from 'js-cookie'
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate=useNavigate()
+  useEffect(() => {
+    const cookieValue = Cookies.get('token');
+    if (cookieValue) {
+      navigate('/home');
+    }
+  }, [navigate]);
+
+const [loginMessage,setLoginMessage]=useState('')
+
   const formSubmit = async(data) => {
  
   try{
@@ -14,18 +24,28 @@ export default function Login() {
     email:data.email,
     password:data.password
   })
-  console.log('res',response);
+  console.log(response.data.token);
+  const token=response.data.token
+  Cookies.set('token', token, { expires: 7, secure: true });
+
+ 
   navigate('/home')
-}
-catch(error){
-  console.log('login errro');
+}catch (error) {
+  console.log('login error', error);
+  if (error.response) {
+    setLoginMessage(error.response.data.message);
+  } else {
+    setLoginMessage('An error occurred during login.');
+  }
 }
 
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="bg-gray-100 p-10 rounded-lg shadow-lg">
+      <div className="bg-white  p-10 rounded-lg shadow-2xl">
+        <h2 className="text-2xl font-bold text-center text-yellow-700 mb-5 ">Login</h2>
+        {loginMessage &&  <p className=" text-red-500">{loginMessage}</p> }
         <form onSubmit={handleSubmit(formSubmit)} className="space-y-4">
           <div>
             <input

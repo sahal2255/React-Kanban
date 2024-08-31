@@ -8,7 +8,7 @@ const TaskAdd = () => {
   const [taskText, setTaskText] = useState(''); 
   const [showInput, setShowInput] = useState(false);
   const dispatch = useDispatch();
-
+  
   const handleAddTask = () => {
     if (taskText.trim()) {
       dispatch(addTask({ text: taskText }));
