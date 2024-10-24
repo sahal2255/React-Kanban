@@ -7,33 +7,33 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function Home() {
-    const navigate=useNavigate()
+    // const navigate=useNavigate()
 
-    console.log('home',document.cookie)
+    // console.log('home',document.cookie)
     
 
-  useEffect(() => {
-    const cookieValue = Cookies.get('token');
-    console.log('cookie value:', cookieValue);
+  // useEffect(() => {
+  //   const cookieValue = Cookies.get('token');
+  //   console.log('cookie value:', cookieValue);
 
-    if (!cookieValue) {
-      console.log('no cookie, redirecting to login');
-      navigate('/');
-    }
-    else{
-        console.log('cookies already');
-        signOut()
-        navigate('/home')
-    }
-  }, [navigate]);
+  //   if (!cookieValue) {
+  //     console.log('no cookie, redirecting to login');
+  //     navigate('/');
+  //   }
+  //   else{
+  //       console.log('cookies already');
+  //       signOut()
+  //       navigate('/home')
+  //   }
+  // }, [navigate]);
 
 
 
-  const signOut=()=>{
-    console.log('signout');
-    Cookies.remove('token')
-    navigate('/')
-  }
+  // const signOut=()=>{
+  //   console.log('signout');
+  //   Cookies.remove('token')
+  //   navigate('/')
+  // }
   return (
     <div >
       <div className="flex justify-center">
@@ -42,9 +42,9 @@ export default function Home() {
             
             <TaskAdd />
           </div>
-          <div className=' m-10 '>
+          {/* <div className=' m-10 '>
             <button className=' bg-yellow-400 px-6 mx-auto h-10 rounded-lg' onClick={signOut}>Sign Out</button>
-            </div>
+            </div> */}
         </div>
       <TaskList />
 

@@ -18,10 +18,12 @@ const TaskList = () => {
   // delete button dialog
 
   const deleteItem = (taskId) => {
+    console.log('clicking the delete button')
     dispatch(deleteTask(taskId));
   };
 
   const editItem = (task) => {
+    console.log('hello click to the edit button')
     setSelectedTask(task);
     setShowModal(true);
   };
@@ -30,9 +32,9 @@ const TaskList = () => {
   const handleDragEnd = (result) => {
     console.log(result);
     const { destination, source, draggableId } = result;
-    console.log("Draggable ID:", draggableId);
-    console.log("Source:", source);
-    console.log("Destination:", destination);
+    // console.log("Draggable ID:", draggableId);
+    // console.log("Source:", source);
+    // console.log("Destination:", destination);
 
     if (!destination) {
       console.log("destination error");
